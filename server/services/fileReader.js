@@ -1,31 +1,31 @@
 import fs from 'fs';
 
+const readJsonFileSync = (filepath, encodingParam) => {
+  let encoding = encodingParam;
+
+  if (typeof (encoding) === 'undefined') {
+    encoding = 'utf8';
+  }
+  const file = fs.readFileSync(filepath, encoding);
+  return JSON.parse(file);
+};
+
 const fileReader = {
+  getFile: (file) => {
+    const filepath = `${__dirname}/../data/${file}`;
 
-  readJsonFileSync: function (filepath, encoding) {
-
-    if (typeof (encoding) == 'undefined') {
-      encoding = 'utf8';
-    }
-    var file = fs.readFileSync(filepath, encoding);
-    return JSON.parse(file);
+    return readJsonFileSync(filepath);
   },
 
-  getFile: function (file) {
-
-    var filepath = __dirname + '/../data/' + file;
-    return this.readJsonFileSync(filepath);
-  },
-
-  getRandomItem: function (items) {
-    var response;
+  getRandomItem: (items) => {
+    let response;
 
     while (!response || response.picture === '') {
       response = items[Math.floor(Math.random() * items.length)];
     }
 
     return response;
-  }
+  },
 };
 
 export default fileReader;

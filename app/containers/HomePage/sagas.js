@@ -1,16 +1,9 @@
-import { take, call, put, select } from 'redux-saga/effects';
-import { takeEvery, getState } from 'redux-saga'
+import { call, put, select } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga';
 import Api from 'services/clients/Api';
 import * as A from './actions';
 import * as C from './constants';
 import { selectTries, selectNameId, selectResult } from './selectors';
-
-// All sagas to be loaded
-export default [
-  fetchNameSaga,
-  submitNameAnswerSaga,
-  handleAnswerSuccessSaga
-];
 
 // Individual exports for testing
 export function* fetchName() {
@@ -31,7 +24,7 @@ export function* submitNameAnswer(action) {
   if (triesNb <= 0) {
     return;
   }
-  const response = yield call(Api.submitNameAnswer, action['submission']);
+  const response = yield call(Api.submitNameAnswer, action.submission);
   if (!response.error) {
     yield put(A.nameAnswerSucceeded(response.result));
   } else {
@@ -73,15 +66,10 @@ export function* onAnswerSuccess() {
 export function* handleAnswerSuccessSaga() {
   yield* takeEvery(C.NAME_ANSWER_SUCCEEDED, onAnswerSuccess);
 }
-//
-//export function* handleKeyEvent() {
-//  window.addEventListener(name, handleEvent);
-//  while(true) {
-//    yield new Promise((resolve, reject) => {
-//
-//    })
-//  }
-//  if (result) {
-//    yield put(A.nameFetchRequested());
-//  }
-//}
+
+// All sagas to be loaded
+export default [
+  fetchNameSaga,
+  submitNameAnswerSaga,
+  handleAnswerSuccessSaga,
+];

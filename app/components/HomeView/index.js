@@ -16,15 +16,6 @@ import Result from 'components/Result';
 import Answer from 'components/Answer';
 
 function HomeView(props) {
-  //
-  //let onKeyDown = (e) => {
-  //  if (e.code === 'Enter' && props.answer) {
-  //    console.log(props.answer);
-  //    props.onFetchName();
-  //  }
-  //};
-  //window.addEventListener('keydown', onKeyDown);
-
   if (!props.name) {
     return <Loading />
   }

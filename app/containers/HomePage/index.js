@@ -4,7 +4,6 @@
  *
  */
 
-import React from 'react';
 import { connect } from 'react-redux';
 import * as S from './selectors';
 import * as A from './actions';
@@ -18,7 +17,8 @@ const mapStateToProps = createSelector(
   S.selectResult(),
   S.selectAnswer(),
   S.selectError(),
-  (loading, name, submission, result, answer, error) => ({ loading, name, submission, result, answer, error })
+  (loading, name, submission, result, answer, error) =>
+    ({ loading, name, submission, result, answer, error })
 );
 
 function mapDispatchToProps(dispatch) {
