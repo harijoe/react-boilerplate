@@ -1,21 +1,34 @@
 /*
+ *
  * HomePage
  *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a neccessity for you then you can refactor it and remove
- * the linting exception.
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import * as S from './selectors';
+import * as A from './actions';
+import { createSelector } from 'reselect';
+import HomeView from 'components/HomeView';
 
-export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+const mapStateToProps = createSelector(
+  S.selectLoading(),
+  S.selectName(),
+  S.selectSubmission(),
+  S.selectResult(),
+  S.selectAnswer(),
+  S.selectError(),
+  (loading, name, submission, result, answer, error) => ({ loading, name, submission, result, answer, error })
+);
 
-  render() {
-    return (
-      <h1>This is the Homepage!</h1>
-    );
-  }
+function mapDispatchToProps(dispatch) {
+  return {
+    onFetchName: () => dispatch(A.nameFetchRequested()),
+    onSubmitAnswer: (nameId, guess) => dispatch(A.nameAnswerSubmitted(nameId, guess)),
+    onImageLoaded: () => dispatch(A.nameImageLoaded()),
+    onImageFailed: () => dispatch(A.nameImageFailed()),
+    dispatch,
+  };
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
