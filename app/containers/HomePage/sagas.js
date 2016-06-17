@@ -50,7 +50,6 @@ export function* checkTriesNb() {
 }
 
 export function* resetOnSuccess() {
-  console.log('on Success');
   const result = yield select(selectResult());
   if (result) {
     yield put(A.nameFetchRequested());
@@ -58,7 +57,6 @@ export function* resetOnSuccess() {
 }
 
 export function* onAnswerSuccess() {
-  console.log('hello');
   yield* resetOnSuccess();
   yield* checkTriesNb();
 }

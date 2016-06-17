@@ -10,18 +10,18 @@ import styles from './styles.css';
 
 class SubmissionForm extends React.Component {
   state = {
-    input: ''
+    input: '',
   };
 
   onChange = (e) => {
-    this.setState({input: e.target.value})
+    this.setState({ input: e.target.value });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.input != '') {
+    if (this.state.input !== '') {
       this.props.onSubmitAnswer(this.props.nameId, this.state.input);
-      this.setState({input: ''})
+      this.setState({ input: '' });
     }
   };
 
@@ -32,9 +32,9 @@ class SubmissionForm extends React.Component {
     }
 
     return (
-      <div className={ styles.submissionForm }>
+      <div className={styles.submissionForm}>
         <form onSubmit={this.onSubmit}>
-          Réponse : <input autoFocus={true} type='text' onChange={this.onChange} value={this.state.input} />
+          Réponse : <input autoFocus type="text" onChange={this.onChange} value={this.state.input} />
         </form>
       </div>
     );

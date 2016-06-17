@@ -20,7 +20,7 @@ function NewNameButton(props) {
 
   return (
     <div className={ styles.newNameButton }>
-      <button onClick={onClick}>Again !</button>
+      <button autoFocus onClick={onClick}>Again !</button>
     </div>
   );
 }
