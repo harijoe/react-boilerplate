@@ -22,6 +22,7 @@ router.get('/name/:nameId', (req, res) => {
   return res.status(200).json({
     id: item.id,
     name: item.firstname,
+    debug: diacriticsRemover.remove(item.firstname).toUpperCase(),
   });
 });
 

@@ -17,11 +17,26 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/lib/sanitize.css';
+
+// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
+import styles from 'containers/App/styles.css';
+const robotoObserver = new FontFaceObserver('Roboto', {});
+
+// When Open Sans is loaded, add a font-family using Open Sans to the body
+robotoObserver.check().then(() => {
+  document.body.classList.add(styles.fontLoaded);
+}, () => {
+  document.body.classList.remove(styles.fontLoaded);
+});
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -48,18 +63,21 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(useScroll())
-      }
-    />
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Router
+        history={history}
+        routes={rootRoute}
+        render={
+          // Scroll to top when going to a new page, imitating default browser
+          // behaviour
+          applyRouterMiddleware(useScroll())
+        }
+      />
+    </MuiThemeProvider>
   </Provider>,
-  document.getElementById('app')
-);
+document.getElementById('app')
+)
+;
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,

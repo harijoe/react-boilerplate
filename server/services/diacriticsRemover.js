@@ -396,5 +396,5 @@ for (let i = 0; i < defaultDiacriticsRemovalMap.length; i++) {
 export default{
   remove: (str) => str
     .replace(/[^\u0000-\u007E]/g, (a) => diacriticsMap[a] || a)
-    .replace(/[^a-zA-Z ]/g, ''),
+    .replace(/[^a-zA-Z]/g, ''),
 };
