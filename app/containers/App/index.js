@@ -12,6 +12,18 @@
  */
 
 import React from 'react';
+import styles from './styles.css';
+
+// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
+const robotoObserver = new FontFaceObserver('Roboto', {});
+
+// When Open Sans is loaded, add a font-family using Open Sans to the body
+robotoObserver.check().then(() => {
+  document.body.classList.add(styles.fontLoaded);
+}, () => {
+  document.body.classList.remove(styles.fontLoaded);
+});
 
 export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,8 +33,8 @@ export default class App extends React.Component { // eslint-disable-line react/
 
   render() {
     return (
-      <div>
-        {this.props.children}
+      <div className={styles.wrapper}>
+      {this.props.children}
       </div>
     );
   }

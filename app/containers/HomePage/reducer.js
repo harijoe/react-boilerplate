@@ -67,6 +67,9 @@ function homePageReducer(state = initialState, action) {
         .set('answer', null)
         .set('error', action.error)
         .set('loading', false);
+    case C.KEY_PRESS:
+      return state
+        .set('result', null);
     default:
       return state;
   }

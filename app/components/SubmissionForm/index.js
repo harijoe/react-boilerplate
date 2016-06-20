@@ -7,6 +7,7 @@
 import React from 'react';
 
 import styles from './styles.css';
+import { TextField } from 'material-ui';
 
 class SubmissionForm extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class SubmissionForm extends React.Component {
 
   onChange = (e) => {
     this.setState({ input: e.target.value });
+    this.props.onKeyPress();
   };
 
   onSubmit = (e) => {
@@ -31,10 +33,19 @@ class SubmissionForm extends React.Component {
       return false;
     }
 
+    const errorText = this.props.result !== false ? '' : `Essaie encore ! ( ${this.props.tries} essais restants)`;
+
     return (
       <div className={styles.submissionForm}>
         <form onSubmit={this.onSubmit}>
-          Réponse : <input autoFocus type="text" onChange={this.onChange} value={this.state.input} />
+          <TextField
+            hintText="Answer"
+            floatingLabelText="Who is it ?"
+            floatingLabelFixed={true}
+            errorText={errorText}
+          >
+            <input autocomplete="off" autoFocus type="text" onChange={this.onChange} value={this.state.input} />
+          </TextField>
         </form>
       </div>
     );

@@ -79,3 +79,9 @@ export function answerFetchFailed(error) {
     error,
   };
 }
+
+export function keyPress() {
+  return {
+    type: C.KEY_PRESS,
+  };
+}

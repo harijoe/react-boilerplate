@@ -7,7 +7,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-
+import {RaisedButton} from 'material-ui';
 function NewNameButton(props) {
 
   let onClick = () => {
@@ -21,6 +21,7 @@ function NewNameButton(props) {
   return (
     <div className={ styles.newNameButton }>
       <button autoFocus onClick={onClick}>Again !</button>
+      <RaisedButton autoFocus={true} label="Encore !" primary={true} style={style} />
     </div>
   );
 }

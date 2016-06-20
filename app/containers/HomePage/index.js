@@ -16,9 +16,10 @@ const mapStateToProps = createSelector(
   S.selectSubmission(),
   S.selectResult(),
   S.selectAnswer(),
+  S.selectTries(),
   S.selectError(),
-  (loading, name, submission, result, answer, error) =>
-    ({ loading, name, submission, result, answer, error })
+  (loading, name, submission, result, answer, tries, error) =>
+    ({ loading, name, submission, result, answer, tries, error })
 );
 
 function mapDispatchToProps(dispatch) {
@@ -27,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     onSubmitAnswer: (nameId, guess) => dispatch(A.nameAnswerSubmitted(nameId, guess)),
     onImageLoaded: () => dispatch(A.nameImageLoaded()),
     onImageFailed: () => dispatch(A.nameImageFailed()),
+    onKeyPress: () => dispatch(A.keyPress()),
     dispatch,
   };
 }
