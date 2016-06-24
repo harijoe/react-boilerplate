@@ -5,13 +5,16 @@
 */
 
 import React from 'react';
+import NewNameButton from 'components/NewNameButton';
 
 import styles from './styles.css';
 
 function Answer(props) {
   return (
     <div className={ styles.answer }>
-      La bonne réponse était: {props.answer.name}
+      <p className={styles.label}>La bonne réponse était: </p>
+      <h2 className={`animated fadeIn ${styles.h2}`}>{props.answer.name}</h2>
+      <NewNameButton onFetchName={props.onFetchName} />
     </div>
   );
 }

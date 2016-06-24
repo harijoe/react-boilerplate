@@ -14,19 +14,13 @@ const initialState = fromJS({
   result: null,
   submission: null,
   answer: null,
-  tries: 3
+  tries: C.INITIAL_TRIES_NB
 });
 
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
     case C.NAME_FETCH_REQUESTED:
-      return state
-        .set('loading', true)
-        .set('error', null)
-        .set('name', null)
-        .set('result', null)
-        .set('answer', null)
-        .set('tries', 3);
+      return state.merge(initialState)
     case C.NAME_FETCH_SUCCEEDED:
       return state
         .set('error', null)

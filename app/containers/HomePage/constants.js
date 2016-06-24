@@ -4,6 +4,8 @@
  *
  */
 
+export const INITIAL_TRIES_NB = 2;
+
 export const NAME_FETCH_REQUESTED = 'app/HomePage/NAME_FETCH_REQUESTED';
 export const NAME_FETCH_SUCCEEDED = 'app/HomePage/NAME_FETCH_SUCCEEDED';
 export const NAME_FETCH_FAILED = 'app/HomePage/NAME_FETCH_FAILED';

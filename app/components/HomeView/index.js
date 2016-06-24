@@ -33,8 +33,9 @@ function HomeView(props) {
   } else if (props.answer) {
     content = (
       <div>
-        <Answer answer={props.answer} />
-        <NewNameButton onFetchName={props.onFetchName} />
+        <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed}
+        height={200} width={200} />
+        <Answer answer={props.answer} onFetchName={props.onFetchName} />
       </div>
     )
   } else {

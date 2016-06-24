@@ -33,7 +33,7 @@ class SubmissionForm extends React.Component {
       return false;
     }
 
-    const errorText = this.props.result !== false ? '' : `Essaie encore ! ( ${this.props.tries} essais restants)`;
+    const errorText = this.props.result !== false && this.props.tries > 0 ? '' : `Try again! ( ${this.props.tries} try left)`;
 
     return (
       <div className={styles.submissionForm}>
@@ -41,11 +41,14 @@ class SubmissionForm extends React.Component {
           <TextField
             hintText="Answer"
             floatingLabelText="Who is it ?"
-            floatingLabelFixed={true}
+            floatingLabelFixed
             errorText={errorText}
-          >
-            <input autocomplete="off" autoFocus type="text" onChange={this.onChange} value={this.state.input} />
-          </TextField>
+            onChange={this.onChange}
+            value={this.state.input}
+            autoComplete="off"
+            autoFocus="autofocus"
+            type="text"
+          />
         </form>
       </div>
     );
