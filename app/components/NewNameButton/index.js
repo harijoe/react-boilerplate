@@ -5,29 +5,44 @@
 */
 
 import React from 'react';
+import reactTimeout from 'react-timeout';
 
 import styles from './styles.css';
-import {RaisedButton} from 'material-ui';
+import { RaisedButton } from 'material-ui';
 
-function NewNameButton(props) {
+class NewNameButton extends React.Component {
+  constructor(props) {
+    super(props);
+    props.setTimeout(() => {
+      this.setState({ disabled: false, autofocus: true });
+    }, 1000);
+  }
 
-  const resetName = () => {
-    props.onFetchName();
+  state = {
+    disabled: true,
+    autofocus: true,
   };
 
-  let onClick = () => {
-    resetName();
+  onClick = () => {
+    this.resetName();
   };
 
-  return (
-    <div className={`animated fadeIn ${styles.newNameButton}`}>
-      <RaisedButton onClick={onClick} autoFocus label="Again !" primary />
-    </div>
-  );
+  resetName = () => {
+    this.props.onFetchName();
+  };
+
+  render() {
+    return (
+      <div className={`animated fadeIn ${styles.newNameButton}`}>
+        <RaisedButton disabled={this.state.disabled} onClick={this.onClick} autoFocus={this.state.autofocus} label="Again !" primary />
+      </div>
+    );
+  }
 }
 
 NewNameButton.propTypes = {
   onFetchName: React.PropTypes.func.isRequired,
+  setTimeout: React.PropTypes.func.isRequired,
 };
 
-export default NewNameButton;
+export default reactTimeout(NewNameButton);
