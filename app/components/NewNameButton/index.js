@@ -14,13 +14,20 @@ class NewNameButton extends React.Component {
   constructor(props) {
     super(props);
     props.setTimeout(() => {
-      this.setState({ disabled: false, autofocus: true });
+      this.setState({ disabled: false });
+    }, 3000);
+    const interval = props.setInterval(() => {
+      this.setState({ seconds: this.state.seconds - 1 });
+      if (this.state.seconds <= 0) {
+        props.clearInterval(interval);
+        this.refs.inputToFocus.refs.container.refs.enhancedButton.focus();
+      }
     }, 1000);
   }
 
   state = {
     disabled: true,
-    autofocus: true,
+    seconds: 3,
   };
 
   onClick = () => {
@@ -32,9 +39,16 @@ class NewNameButton extends React.Component {
   };
 
   render() {
+    const label = this.state.seconds ? `Again ${this.state.seconds}` : 'Again!';
     return (
       <div className={`animated fadeIn ${styles.newNameButton}`}>
-        <RaisedButton disabled={this.state.disabled} onClick={this.onClick} autoFocus={this.state.autofocus} label="Again !" primary />
+        <RaisedButton
+          disabled={this.state.disabled}
+          onClick={this.onClick}
+          label={label}
+          primary
+          ref="inputToFocus"
+        />
       </div>
     );
   }
@@ -43,6 +57,8 @@ class NewNameButton extends React.Component {
 NewNameButton.propTypes = {
   onFetchName: React.PropTypes.func.isRequired,
   setTimeout: React.PropTypes.func.isRequired,
+  setInterval: React.PropTypes.func.isRequired,
+  clearInterval: React.PropTypes.func.isRequired,
 };
 
 export default reactTimeout(NewNameButton);
