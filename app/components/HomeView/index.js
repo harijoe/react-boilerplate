@@ -37,7 +37,12 @@ function HomeView(props) {
   let content;
 
   if (!props.name) {
-    content = <Loading />;
+    content = (
+      <div>
+
+        <Loading />
+      </div>
+    );
   } else if (props.answer) {
     content = (
       <div>
@@ -49,9 +54,6 @@ function HomeView(props) {
   } else {
     content =  (
       <div>
-        <IconButton style={homeButtonStyle}>
-          <NavigationMenuIcon />
-        </IconButton>
         <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} />
         <SubmissionForm
           onKeyPress={props.onKeyPress}
@@ -69,6 +71,9 @@ function HomeView(props) {
     <div className={ styles.homeView }>
       <Paper style={style} zDepth={2}>
         <Title>The Name Challenge</Title>
+        <IconButton style={homeButtonStyle}>
+          <NavigationMenuIcon />
+        </IconButton>
         {content}
       </Paper>
     </div>
