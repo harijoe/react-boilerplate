@@ -15,7 +15,8 @@ import NewNameButton from 'components/NewNameButton';
 import Result from 'components/Result';
 import Answer from 'components/Answer';
 import Title from 'components/Title';
-import { Paper } from 'material-ui';
+import { Paper, IconButton } from 'material-ui';
+import NavigationMenuIcon from 'material-ui/svg-icons/navigation/menu';
 
 const style = {
   margin: 20,
@@ -23,6 +24,13 @@ const style = {
   width: 340,
   height: 525,
   display: 'inline-block',
+};
+
+const homeButtonStyle = {
+  opacity: 0.7,
+  float: 'left',
+  position: 'absolute',
+  display: 'block',
 };
 
 function HomeView(props) {
@@ -41,6 +49,9 @@ function HomeView(props) {
   } else {
     content =  (
       <div>
+        <IconButton style={homeButtonStyle}>
+          <NavigationMenuIcon />
+        </IconButton>
         <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} />
         <SubmissionForm
           onKeyPress={props.onKeyPress}
