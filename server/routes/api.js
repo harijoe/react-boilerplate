@@ -37,11 +37,17 @@ router.post('/name', (req, res) => {
     === diacriticsRemover.remove(req.body.guess).toUpperCase()) {
     return res.status(200).json({
       result: true,
+      answer: {
+        id: item.id,
+        name: item.firstname,
+        debug: diacriticsRemover.remove(item.firstname).toUpperCase(),
+      },
     });
   }
 
   return res.status(200).json({
     result: false,
+    answer: null,
   });
 });
 

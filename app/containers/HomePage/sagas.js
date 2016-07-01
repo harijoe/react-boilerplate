@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
+import { takeEvery, delay } from 'redux-saga';
 import Api from 'services/clients/Api';
 import * as A from './actions';
 import * as C from './constants';
@@ -26,7 +26,7 @@ export function* submitNameAnswer(action) {
   }
   const response = yield call(Api.submitNameAnswer, action.submission);
   if (!response.error) {
-    yield put(A.nameAnswerSucceeded(response.result));
+    yield put(A.nameAnswerSucceeded(response.result, response.answer));
   } else {
     yield put(A.nameAnswerFailed(response.error));
   }
@@ -52,6 +52,7 @@ export function* checkTriesNb() {
 export function* resetOnSuccess() {
   const result = yield select(selectResult());
   if (result) {
+    yield delay(2000);
     yield put(A.nameFetchRequested());
   }
 }

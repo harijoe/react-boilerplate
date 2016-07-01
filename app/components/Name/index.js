@@ -23,7 +23,6 @@ function Name(props) {
     margin: 20,
     textAlign: 'center',
     display: 'inline-block',
-
   };
 
   return (

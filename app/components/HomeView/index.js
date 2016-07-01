@@ -37,23 +37,18 @@ function HomeView(props) {
   let content;
 
   if (!props.name) {
-    content = (
-      <div>
-
-        <Loading />
-      </div>
-    );
-  } else if (props.answer) {
+    content = <Loading />;
+  } else if (props.answer || props.result) {
     content = (
       <div>
         <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed}
         height={200} width={200} />
-        <Answer answer={props.answer} onFetchName={props.onFetchName} />
+        <Answer answer={props.answer} onFetchName={props.onFetchName} success={props.result} />
       </div>
-    )
+    );
   } else {
-    content =  (
-      <div>
+    content = (
+      <div className={`zoomIn ${styles.content}`}>
         <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} />
         <SubmissionForm
           onKeyPress={props.onKeyPress}

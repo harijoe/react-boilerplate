@@ -52,10 +52,11 @@ export function nameAnswerSubmitted(nameId, guess) {
   };
 }
 
-export function nameAnswerSucceeded(result) {
+export function nameAnswerSucceeded(result, answer) {
   return {
     type: C.NAME_ANSWER_SUCCEEDED,
-    result
+    result,
+    answer,
   };
 }
 

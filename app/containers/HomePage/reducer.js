@@ -45,6 +45,7 @@ function homePageReducer(state = initialState, action) {
       return state
         .set('error', null)
         .set('result', action.result)
+        .set('answer', action.answer)
         .update('tries', (value) => --value);
     case C.NAME_ANSWER_FAILED:
       return state
