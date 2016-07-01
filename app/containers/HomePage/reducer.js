@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 import * as C from './constants';
+import UUIDGenerator from 'services/utils/UUIDGenerator';
 
 const initialState = fromJS({
   loading: true,
@@ -14,13 +15,24 @@ const initialState = fromJS({
   result: null,
   submission: null,
   answer: null,
-  tries: C.INITIAL_TRIES_NB
+  streak: 0,
+  tries: C.INITIAL_TRIES_NB,
+});
+
+const resetState = fromJS({
+  loading: true,
+  error: null,
+  name: null,
+  result: null,
+  submission: null,
+  answer: null,
+  tries: C.INITIAL_TRIES_NB,
 });
 
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
     case C.NAME_FETCH_REQUESTED:
-      return state.merge(initialState)
+      return state.merge(resetState);
     case C.NAME_FETCH_SUCCEEDED:
       return state
         .set('error', null)
@@ -46,7 +58,8 @@ function homePageReducer(state = initialState, action) {
         .set('error', null)
         .set('result', action.result)
         .set('answer', action.answer)
-        .update('tries', (value) => --value);
+        .set('streak', action.streak)
+        .update('tries', (value) => value - 1);
     case C.NAME_ANSWER_FAILED:
       return state
         .set('error', action.error)
@@ -65,6 +78,9 @@ function homePageReducer(state = initialState, action) {
     case C.KEY_PRESS:
       return state
         .set('result', null);
+    case C.RESET_UUID:
+      return state
+        .set('uuid', UUIDGenerator());
     default:
       return state;
   }

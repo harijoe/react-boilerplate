@@ -11,9 +11,8 @@ import styles from './styles.css';
 import Loading from 'components/Loading';
 import Name from 'components/Name';
 import SubmissionForm from 'components/SubmissionForm';
-import NewNameButton from 'components/NewNameButton';
-import Result from 'components/Result';
 import Answer from 'components/Answer';
+import Streak from 'components/Streak';
 import Title from 'components/Title';
 import { Paper, IconButton } from 'material-ui';
 import NavigationMenuIcon from 'material-ui/svg-icons/navigation/menu';
@@ -24,6 +23,7 @@ const style = {
   width: 340,
   height: 525,
   display: 'inline-block',
+  position: 'relative',
 };
 
 const homeButtonStyle = {
@@ -69,6 +69,7 @@ function HomeView(props) {
         <IconButton style={homeButtonStyle}>
           <NavigationMenuIcon />
         </IconButton>
+        <Streak streak={props.streak} />
         {content}
       </Paper>
     </div>

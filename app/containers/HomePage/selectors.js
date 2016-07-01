@@ -39,22 +39,32 @@ const selectResult = () => createSelector(
   (substate) => substate.result
 );
 
+const selectStreak = () => createSelector(
+  selectHomePage(),
+  (substate) => substate.streak
+);
+
 const selectError = () => createSelector(
   selectHomePage(),
   (substate) => substate.error
 );
 
+const selectUUID = () => createSelector(
+  selectHomePage(),
+  (substate) => substate.uuid
+);
+
 const selectTries = () => createSelector(
   selectHomePage(),
   (substate) => {
-    return substate.tries
+    return substate.tries;
   }
 );
 
 const selectNameId = () => createSelector(
   selectName(),
   (name) => {
-    return name.id
+    return name.id;
   }
 );
 
@@ -72,6 +82,8 @@ export {
   selectResult,
   selectError,
   selectTries,
+  selectStreak,
   selectNameId,
+  selectUUID,
   selectAnswer,
 };

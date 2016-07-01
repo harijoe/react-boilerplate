@@ -52,11 +52,12 @@ export function nameAnswerSubmitted(nameId, guess) {
   };
 }
 
-export function nameAnswerSucceeded(result, answer) {
+export function nameAnswerSucceeded(result, answer, streak) {
   return {
     type: C.NAME_ANSWER_SUCCEEDED,
     result,
     answer,
+    streak,
   };
 }
 
@@ -84,5 +85,11 @@ export function answerFetchFailed(error) {
 export function keyPress() {
   return {
     type: C.KEY_PRESS,
+  };
+}
+
+export function resetUUID() {
+  return {
+    type: C.RESET_UUID,
   };
 }

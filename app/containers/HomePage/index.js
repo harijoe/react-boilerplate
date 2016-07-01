@@ -17,9 +17,10 @@ const mapStateToProps = createSelector(
   S.selectResult(),
   S.selectAnswer(),
   S.selectTries(),
+  S.selectStreak(),
   S.selectError(),
-  (loading, name, submission, result, answer, tries, error) =>
-    ({ loading, name, submission, result, answer, tries, error })
+  (loading, name, submission, result, answer, tries, streak, error) =>
+    ({ loading, name, submission, result, answer, tries, streak, error })
 );
 
 function mapDispatchToProps(dispatch) {

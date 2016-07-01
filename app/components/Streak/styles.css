@@ -1,0 +1,9 @@
+.streak {
+    right: 0;
+    position: absolute;
+    display: block;
+    margin: 15px;
+    font-weight: 300;
+    font-size: 1.5em;
+    opacity: 0.8;
+}

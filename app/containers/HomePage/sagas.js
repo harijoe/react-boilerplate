@@ -3,7 +3,7 @@ import { takeEvery, delay } from 'redux-saga';
 import Api from 'services/clients/Api';
 import * as A from './actions';
 import * as C from './constants';
-import { selectTries, selectNameId, selectResult } from './selectors';
+import { selectTries, selectNameId, selectResult, selectUUID } from './selectors';
 
 // Individual exports for testing
 export function* fetchName() {
@@ -24,9 +24,10 @@ export function* submitNameAnswer(action) {
   if (triesNb <= 0) {
     return;
   }
-  const response = yield call(Api.submitNameAnswer, action.submission);
+  const uuid = yield select(selectUUID());
+  const response = yield call(Api.submitNameAnswer, action.submission, uuid);
   if (!response.error) {
-    yield put(A.nameAnswerSucceeded(response.result, response.answer));
+    yield put(A.nameAnswerSucceeded(response.result, response.answer, response.streak));
   } else {
     yield put(A.nameAnswerFailed(response.error));
   }

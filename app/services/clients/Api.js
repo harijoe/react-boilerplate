@@ -26,8 +26,11 @@ export default {
       });
   },
 
-  submitNameAnswer(submission) {
-    return client.post('/name', submission)
+  submitNameAnswer(submission, uuid) {
+    return client.post('/name', {
+      submission,
+      uuid,
+    })
       .then((response) => response.data)
       .catch((error) => {
         throw new ExceptionApi(error);

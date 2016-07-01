@@ -33,7 +33,8 @@ export default function createRoutes(store) {
           injectReducer('home', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
-          store.dispatch({type: 'app/HomePage/NAME_FETCH_REQUESTED'});
+          store.dispatch({ type: 'app/HomePage/RESET_UUID' });
+          store.dispatch({ type: 'app/HomePage/NAME_FETCH_REQUESTED' });
         });
 
         importModules.catch(errorLoading);

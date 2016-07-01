@@ -23,3 +23,4 @@ export const ANSWER_FETCH_FAILED = 'app/HomePage/ANSWER_FETCH_FAILED';
 export const CHECK_TRIES_NB = 'app/HomePage/CHECK_TRIES_NB';
 
 export const KEY_PRESS = 'app/HomePage/KEY_PRESS';
+export const RESET_UUID = 'app/HomePage/RESET_UUID';
