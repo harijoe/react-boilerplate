@@ -37,7 +37,7 @@ class SubmissionForm extends React.Component {
 
     return (
       <div className={styles.submissionForm}>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} className={styles.form}>
           <TextField
             hintText="Answer"
             floatingLabelText="Who is it ?"

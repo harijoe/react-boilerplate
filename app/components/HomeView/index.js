@@ -20,8 +20,9 @@ import NavigationMenuIcon from 'material-ui/svg-icons/navigation/menu';
 const style = {
   margin: 20,
   textAlign: 'center',
-  width: 340,
-  height: 525,
+  width: '100%',
+  height: '100%',
+  margin: 0,
   display: 'inline-block',
   position: 'relative',
 };
@@ -39,16 +40,15 @@ function HomeView(props) {
   if (!props.name) {
   } else if (props.answer || props.result) {
     content = (
-      <div>
-        <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed}
-        height={200} width={200} />
+      <div className={styles.content}>
+        <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} height={'40%'} />
         <Answer answer={props.answer} onFetchName={props.onFetchName} success={props.result} />
       </div>
     );
   } else {
     content = (
       <div className={`zoomIn ${styles.content}`}>
-        <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} />
+        <Name name={props.name} onImageLoaded={props.onImageLoaded} onImageFailed={props.onImageFailed} height={'60%'} />
         <SubmissionForm
           onKeyPress={props.onKeyPress}
           result={props.result}
