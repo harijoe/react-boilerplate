@@ -37,7 +37,6 @@ function HomeView(props) {
   let content;
 
   if (!props.name) {
-    content = <Loading />;
   } else if (props.answer || props.result) {
     content = (
       <div>

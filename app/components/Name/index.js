@@ -6,18 +6,17 @@
 
 import React from 'react';
 
-import Loading from 'components/Loading';
 import styles from './styles.css';
 import ImageLoader from 'react-imageloader';
 import { Paper } from 'material-ui';
 
 function Name(props) {
-  const image_style = {
+  const imageStyle = {
     height: props.height,
     width: props.width,
     transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
   };
-  const paper_style = {
+  const paperStyle = {
     height: props.height,
     width: props.width,
     margin: 20,
@@ -26,18 +25,15 @@ function Name(props) {
   };
 
   return (
-    <div className={ styles.name }>
-      <Paper style={paper_style} zDepth={2} circle={true}>
+    <div className={styles.name}>
+      <Paper style={paperStyle} zDepth={2} circle>
         <ImageLoader
-          src={`https://cf3qb2sn.cloudimg.io/s/crop/300x300/` + props.name.picture}
+          src={`https://cf3qb2sn.cloudimg.io/s/crop/300x300/${props.name.picture}`}
           wrapper={React.DOM.div}
           onError={props.onImageFailed}
           onLoad={props.onImageLoaded}
-          preloader={() => <Loading />}
-          imgProps={{ className: styles.image, style: image_style }}
-        >
-          <Loading />
-        </ImageLoader>
+          imgProps={{ className: styles.image, style: imageStyle }}
+        />
       </Paper>
     </div>
   );
@@ -45,8 +41,10 @@ function Name(props) {
 
 Name.propTypes = {
   name: React.PropTypes.object.isRequired,
-  height: React.PropTypes.number,
-  width: React.PropTypes.number,
+  height: React.PropTypes.number.isRequired,
+  width: React.PropTypes.number.isRequired,
+  onImageLoaded: React.PropTypes.func.isRequired,
+  onImageFailed: React.PropTypes.func.isRequired,
 };
 
 Name.defaultProps = {
